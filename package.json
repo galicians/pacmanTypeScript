@@ -1,0 +1,23 @@
+{
+  "name": "jasmine",
+  "version": "1.0.0",
+  "description": "jasmine tests for typescript with gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typescript",
+    "jasmine",
+    "gulp"
+  ],
+  "author": "Pablo Portabales",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jasmine": "^2.2.1",
+    "gulp-tsc": "^1.1.4",
+    "gulp-watch": "^4.3.5",
+    "run-sequence": "^1.1.5"
+  }
+}
