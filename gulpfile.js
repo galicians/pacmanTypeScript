@@ -20,6 +20,5 @@ gulp.task('default', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch(['src/ts/**/*.ts'], ['default'])
-		
-})
+	gulp.watch(['src/ts/**/*.ts', 'spec/**/*.spec.js'], ['default'])	
+});

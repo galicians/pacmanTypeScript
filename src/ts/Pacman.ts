@@ -1,18 +1,69 @@
 interface IPacmanType {
 	name: string;
-	points: number;
+	score: number;
+	lives: number;
+	posX: number;
+	posY: number;
+	type: string;
 	isAlive(): boolean;
 }
 
 class PacmanType implements IPacmanType {
+	score: number;
+	lives: number;
 	name: string;
-	points: number;
-	constructor(nameArg: string, pointsArg: number) {
+	posX: number;
+	posY: number;
+	type: string;
+
+	constructor(nameArg: string) {
 		this.name = nameArg;
-		this.points = pointsArg;
+		this.score = 0;
+		this.lives = 3;
+		this.type = 'pacman';
 	}
 	isAlive(): boolean {
-		return this.points > 0
+		return this.lives > 0
 	}
+	setPosition(posX: number, posY: number) {
+		this.posX = posX;
+		this.posY = posY
+	}
+	updateScore(bonus: number) {
+		this.score += bonus
+	}
+	updateLives(lives: number) {
+		this.lives += lives
+	}
+	newPosition(direction: string) {
+		var newX: number = this.posX;
+		var newY: number = this.posY;
+
+		if(direction == 'up') {
+			newX = this.posX;
+			newY = this.posY - 1;
+		}
+		if(direction == 'down') {
+			newX = this.posX + 1;
+			newY = this.posY;
+		}
+		if(direction == 'right') {
+			newX = this.posX;
+			newY = this.posY - 1;
+		}
+ 		if(direction == 'left') {
+			newX = this.posX;
+			newY = this.posY + 1;
+		}
+		return [newX, newY]
+	}
+	checkCellState(cell:any):string {
+		return cell.state
+	}
+	// move(direction: string, maze) {
+	// 	var position = newPosition(direction: string);
+	// 	var cell = maze[position]
+	// 	if(checkCellState(cell) !== 'wall') cell.populate(this)
+	// }
 
 }

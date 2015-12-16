@@ -1,26 +1,32 @@
 interface ICellType {
-	state: string;
 	posY: number;
 	posX: number;
 	content: any;
-	states: string[]: ['empty', 'wall', 'populated'];
+	state: string;
 };
+
+var STATES: string[] = ['empty', 'wall', 'populated'];
 
 class CellType implements ICellType {
 
-	state: string;
 	posX: number;
 	posY: number;
 	content: any;
+	state: string;
 	
 	constructor(posX: number, posY: number, state: string) {
 		this.state = state || 'empty';
 		this.posX = posX;
 		this.posY = posY;
 		this.content = undefined;
+		this.state = 'empty'
 	};
-
-	populate(entity: any): void {
+	populate(entity: any) {
 		this.content = entity
+		this.state = 'populated'
 	};
+	getContent():string {
+		return (this.state === 'populated') ? this.content.type : this.state
+	}
+
 }
