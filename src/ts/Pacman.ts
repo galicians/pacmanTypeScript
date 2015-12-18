@@ -5,6 +5,7 @@ interface IPacmanType {
 	posX: number;
 	posY: number;
 	type: string;
+	invulnerable: boolean;
 	isAlive(): boolean;
 }
 
@@ -14,6 +15,7 @@ class PacmanType implements IPacmanType {
 	name: string;
 	posX: number;
 	posY: number;
+	invulnerable: boolean;
 	type: string;
 
 	constructor(nameArg: string) {
@@ -21,6 +23,7 @@ class PacmanType implements IPacmanType {
 		this.score = 0;
 		this.lives = 3;
 		this.type = 'pacman';
+		this.invulnerable = false;
 	}
 	isAlive(): boolean {
 		return this.lives > 0
@@ -58,12 +61,17 @@ class PacmanType implements IPacmanType {
 		return [newX, newY]
 	}
 	checkCellState(cell:any):string {
-		return cell.state
+		return cell.getContent()
 	}
 	move(direction: string, maze) {
 		var position = this.newPosition(direction);
 		var cell = maze.grid[position[0]][position[1]]
+		if (this.checkCellState(cell) == 'phantom') {
+			if(!this.invulnerable)this.lives -= 1;
+			maze.place(cell.content, [this.posX, this.posY])
+		}
 		if (this.checkCellState(cell) !== 'wall') cell.populate(this)
+		
 	}
 
 }

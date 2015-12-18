@@ -2,11 +2,13 @@ var __require = require("__require");
 eval( __require("Pacman.js") );
 eval( __require("Cell.js") );
 eval( __require("Maze.js"));
+eval( __require("Phantom.js"));
 
 describe("Pacman", function() {
 	var pacman;
 	var maze;
 	var cell;
+	var phantom;
 
 	beforeEach(function() {
 		pacman = new PacmanType('player1')
@@ -64,7 +66,7 @@ describe("Pacman", function() {
 
 	beforeEach(function() {
 		cell = CellType
-		maze = new MazeType();
+		maze = new MazeType()
 		maze.populateGrid(cell)
 	})
 
@@ -81,7 +83,23 @@ describe("Pacman", function() {
 		expect(maze.grid[15][0].getContent()).toEqual('wall')
 	});
 
+	describe('when moving', function() {
+		beforeEach(function() {
+			phantom = new PhantomType()
+			maze.place(phantom, [0,1])
+			maze.place(pacman, [0,0])
+			pacman.move('right', maze)
+		});
+
+		it("should loose a life if it moves to a cell with a phantom", function() {
+			expect(pacman.lives).toEqual(2)
+		});
+
+		it("shouldn't loose a life when invulnerable", function() {
+			pacman.invulnerable = true;
+			expect(pacman.lives).toEqual(2)
+		})
+
+	})
+
 });
-//    ;2,1
-// 2,1;2,2;2,3
-//    ;3,2;

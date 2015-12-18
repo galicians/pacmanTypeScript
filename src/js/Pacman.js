@@ -4,6 +4,7 @@ var PacmanType = (function () {
         this.score = 0;
         this.lives = 3;
         this.type = 'pacman';
+        this.invulnerable = false;
     }
     PacmanType.prototype.isAlive = function () {
         return this.lives > 0;
@@ -40,11 +41,16 @@ var PacmanType = (function () {
         return [newX, newY];
     };
     PacmanType.prototype.checkCellState = function (cell) {
-        return cell.state;
+        return cell.getContent();
     };
     PacmanType.prototype.move = function (direction, maze) {
         var position = this.newPosition(direction);
         var cell = maze.grid[position[0]][position[1]];
+        if (this.checkCellState(cell) == 'phantom') {
+            if (!this.invulnerable)
+                this.lives -= 1;
+            maze.place(cell.content, [this.posX, this.posY]);
+        }
         if (this.checkCellState(cell) !== 'wall')
             cell.populate(this);
     };
