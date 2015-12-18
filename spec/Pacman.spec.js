@@ -62,13 +62,23 @@ describe("Pacman", function() {
 		expect(pacman.checkCellState(cell)).toEqual('empty');
 	});
 
-	it("should move to an empty cell", function() {
+	beforeEach(function() {
 		cell = CellType
 		maze = new MazeType();
 		maze.populateGrid(cell)
+	})
+
+	it("should move to an empty cell", function() {
 		maze.place(pacman, [0,0])
 		pacman.move('right', maze)
 		expect(maze.grid[0][1].getContent()).toEqual('pacman')
+	});
+
+	it("should be able to fence around walls", function() {
+		maze.walledUpGrid()
+		expect(maze.grid[0][0].getContent()).toEqual('wall')
+		expect(maze.grid[0][15].getContent()).toEqual('wall')
+		expect(maze.grid[15][0].getContent()).toEqual('wall')
 	});
 
 });
