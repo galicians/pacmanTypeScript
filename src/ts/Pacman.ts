@@ -47,11 +47,11 @@ class PacmanType implements IPacmanType {
 			newX = this.posX + 1;
 			newY = this.posY;
 		}
-		if(direction == 'right') {
+		if(direction == 'left') {
 			newX = this.posX;
 			newY = this.posY - 1;
 		}
- 		if(direction == 'left') {
+ 		if(direction == 'right') {
 			newX = this.posX;
 			newY = this.posY + 1;
 		}
@@ -60,10 +60,10 @@ class PacmanType implements IPacmanType {
 	checkCellState(cell:any):string {
 		return cell.state
 	}
-	// move(direction: string, maze) {
-	// 	var position = newPosition(direction: string);
-	// 	var cell = maze[position]
-	// 	if(checkCellState(cell) !== 'wall') cell.populate(this)
-	// }
+	move(direction: string, maze) {
+		var position = this.newPosition(direction);
+		var cell = maze.grid[position[0]][position[1]]
+		if (this.checkCellState(cell) !== 'wall') cell.populate(this)
+	}
 
 }

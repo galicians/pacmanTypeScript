@@ -28,5 +28,9 @@ class CellType implements ICellType {
 	getContent():string {
 		return (this.state === 'populated') ? this.content.type : this.state
 	}
+	wallUp() {
+		this.content = 'wall'
+		this.state = 'wall'
+	}
 
 }

@@ -1,10 +1,12 @@
 var __require = require("__require");
 eval( __require("Maze.js") );
 eval( __require("Cell.js") );
+eval( __require("Pacman.js") );
 
 describe("Maze", function() {
 	var maze;
 	var cell;
+	var pacman;
 
 	beforeEach(function() {
 		maze = new MazeType();
@@ -41,6 +43,13 @@ describe("Maze", function() {
 	it("should be assign the position to the cells after populate grid", function() {
 		expect(maze.grid[0][0].posX).toEqual(0)
 		expect(maze.grid[0][0].posY).toEqual(0)
+	});
+
+	it("should place an entity in a particular cell", function() {
+		pacman = new PacmanType()
+		maze.place(pacman, [0,0])
+		expect(maze.grid[0][0].state).toEqual('populated')
+		expect(maze.grid[0][0].getContent()).toEqual('pacman')
 	})
 
 })

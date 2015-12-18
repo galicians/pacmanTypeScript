@@ -1,17 +1,20 @@
 var __require = require("__require");
 eval( __require("Pacman.js") );
 eval( __require("Cell.js") );
+eval( __require("Maze.js"));
 
 describe("Pacman", function() {
 	var pacman;
+	var maze;
+	var cell;
 
 	beforeEach(function() {
 		pacman = new PacmanType('player1')
-	})
+	});
 
 	it("should have a type", function() {
 		expect(pacman.type).toEqual('pacman');
-	})//TO DO
+	});
 
 	it("should have a name", function() {
 		expect(pacman.name).toEqual('player1')
@@ -50,17 +53,23 @@ describe("Pacman", function() {
 		pacman.setPosition(2, 2)
 		expect(pacman.newPosition('up')).toEqual([2,1])
 		expect(pacman.newPosition('down')).toEqual([3,2])
-		expect(pacman.newPosition('left')).toEqual([2,3])
-		expect(pacman.newPosition('right')).toEqual([2,1])
+		expect(pacman.newPosition('left')).toEqual([2,1])
+		expect(pacman.newPosition('right')).toEqual([2,3])
 	});
 
 	it("should know the state of a cell", function() {
 		cell = new CellType()
 		expect(pacman.checkCellState(cell)).toEqual('empty');
 	});
-	it("should move to an empty cell", function() { // TO DO AFTER MAZE
-		cell = new CellType()
-	})
+
+	it("should move to an empty cell", function() {
+		cell = CellType
+		maze = new MazeType();
+		maze.populateGrid(cell)
+		maze.place(pacman, [0,0])
+		pacman.move('right', maze)
+		expect(maze.grid[0][1].getContent()).toEqual('pacman')
+	});
 
 });
 //    ;2,1

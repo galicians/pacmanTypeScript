@@ -29,11 +29,11 @@ var PacmanType = (function () {
             newX = this.posX + 1;
             newY = this.posY;
         }
-        if (direction == 'right') {
+        if (direction == 'left') {
             newX = this.posX;
             newY = this.posY - 1;
         }
-        if (direction == 'left') {
+        if (direction == 'right') {
             newX = this.posX;
             newY = this.posY + 1;
         }
@@ -41,6 +41,12 @@ var PacmanType = (function () {
     };
     PacmanType.prototype.checkCellState = function (cell) {
         return cell.state;
+    };
+    PacmanType.prototype.move = function (direction, maze) {
+        var position = this.newPosition(direction);
+        var cell = maze.grid[position[0]][position[1]];
+        if (this.checkCellState(cell) !== 'wall')
+            cell.populate(this);
     };
     return PacmanType;
 })();

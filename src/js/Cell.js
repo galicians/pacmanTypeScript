@@ -18,5 +18,9 @@ var CellType = (function () {
     CellType.prototype.getContent = function () {
         return (this.state === 'populated') ? this.content.type : this.state;
     };
+    CellType.prototype.wallUp = function () {
+        this.content = 'wall';
+        this.state = 'wall';
+    };
     return CellType;
 })();
