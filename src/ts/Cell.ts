@@ -3,7 +3,6 @@ interface ICellType {
 	posY: number;
 	posX: number;
 	content: any;
-	states: string[]: ['empty', 'wall', 'populated'];
 };
 
 class CellType implements ICellType {
@@ -13,8 +12,8 @@ class CellType implements ICellType {
 	posY: number;
 	content: any;
 	
-	constructor(posX: number, posY: number, state: string) {
-		this.state = state || 'empty';
+	constructor(posX: number, posY: number, state: string = "empty") {
+		this.state = state;
 		this.posX = posX;
 		this.posY = posY;
 		this.content = undefined;

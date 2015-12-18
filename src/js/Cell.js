@@ -1,7 +1,8 @@
 ;
 var CellType = (function () {
     function CellType(posX, posY, state) {
-        this.state = state || 'empty';
+        if (state === void 0) { state = "empty"; }
+        this.state = state;
         this.posX = posX;
         this.posY = posY;
         this.content = undefined;
