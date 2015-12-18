@@ -4,11 +4,6 @@ var MazeType = (function () {
     function MazeType(height, width) {
         this.height = height || DEFAULT_HEIGHT;
         this.width = width || DEFAULT_WIDTH;
-<<<<<<< HEAD
-        // this.content = 
-    }
-=======
-        this.grid;
     }
     MazeType.prototype.buildGrid = function () {
         this.grid = new Array(this.width);
@@ -25,6 +20,5 @@ var MazeType = (function () {
         }
         // console.log('this.grid', this.grid)
     };
->>>>>>> develop
     return MazeType;
 })();

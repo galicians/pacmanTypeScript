@@ -8,7 +8,7 @@ describe('Cell', function() {
 
 	beforeEach(function() {
 		cell = new CellType();
-	})
+	});
 
 	it('the default state should be empty', function() {
 		expect(cell.state).toEqual('empty');

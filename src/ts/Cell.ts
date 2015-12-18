@@ -2,10 +2,7 @@ interface ICellType {
 	posY: number;
 	posX: number;
 	content: any;
-<<<<<<< HEAD
 	state: string;
-=======
->>>>>>> develop
 };
 
 var STATES: string[] = ['empty', 'wall', 'populated'];

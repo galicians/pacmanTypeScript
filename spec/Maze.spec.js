@@ -4,10 +4,7 @@ eval( __require("Cell.js") );
 
 describe("Maze", function() {
 	var maze;
-<<<<<<< HEAD
-=======
 	var cell;
->>>>>>> develop
 
 	beforeEach(function() {
 		maze = new MazeType();
@@ -18,9 +15,6 @@ describe("Maze", function() {
 		expect(maze.width).toEqual(30);
 	});
 
-<<<<<<< HEAD
-	
-=======
 	it("should have a name", function() {
 		maze.name = 'pablo\'s maze';
 	});
@@ -49,5 +43,4 @@ describe("Maze", function() {
 		expect(maze.grid[0][0].posY).toEqual(0)
 	})
 
->>>>>>> develop
 })
