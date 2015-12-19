@@ -52,4 +52,11 @@ describe("Maze", function() {
 		expect(maze.grid[0][0].getContent()).toEqual('pacman')
 	})
 
+	it("should be able to fence around walls", function() {
+		maze.walledUpGrid()
+		expect(maze.grid[0][0].getContent()).toEqual('wall')
+		expect(maze.grid[0][15].getContent()).toEqual('wall')
+		expect(maze.grid[15][0].getContent()).toEqual('wall')
+	});
+
 })
